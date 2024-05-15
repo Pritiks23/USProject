@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>geog465_My First Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+</head>
+<body>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <div id="mapid" style="width: 600px; height: 400px;margin: auto;"></div>
+    <script> var mymap = L.map('mapid',
+{
+center: [47.6546, -122.3075],
+zoom: 14.8
+});
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+}).addTo(mymap);
+var seattleIcon = L.icon({
+       iconUrl: 'https://cdn.icon-icons.com/icons2/37/PNG/512/online_4158.png',
+      iconSize:     [38, 38], });          // size of the icon
+var seattleMarker = L.marker([47.6062, -122.3321],
+     {icon:seattleIcon, draggable: true, keyboard: true, title: 'Seattle Marker', riseOnHover: true}).addTo(mymap).bindPopup("Hi, from Seattle");
+var losAngelesmarker = L.marker([34.0549, -118.2426],
+     {icon:seattleIcon, draggable: true, keyboard: true, title: 'Los Angeles Marker', riseOnHover: true}).addTo(mymap).bindPopup("My fav city is Los Angeles");
+var sanFranmarker = L.marker([37.7749, -122.4194],
+     {icon:seattleIcon, draggable: true, keyboard: true, title: 'San Fran Marker', riseOnHover: true}).addTo(mymap).bindPopup("My second fav is San Francisco");
+     var mypolyline = L.polyline([[47.593792, -122.333723],[46.798276, -96.756621],[42.347259, -71.052004]], {color:'red', weight:8}).addTo(mymap);
+var mypolygon = L.polygon([[[48.825293, -103.981806],[46.092644,-103.981806],[45.929688, -96.543221],[49.003219, -97.180428]]],{color:'red', weight:8, fillColor:'blue', fillOpacity:1}).addTo(mymap);
+var multipolygon = L.polygon([[[35.10418, -106.62987],[35.19738, -106.875],[35.07946, -106.80634]],[[35.11654, -106.58318],[35.13142, -106.48876],[35.07384, -106.52412]]], {color: 'red',weight:8}).addTo(mymap);
+
+<!--The two classelemnents I added in was .openPopup and opacity-->
+
+var mysecondpolyline = L.polyline([[34.259293140602736, -114.13055529976657],[33.030917, -114.592204]], {opacity: 1}, {smoothFactor: 0.5}).addTo(mymap);
+var mythirdpolyline = L.polyline([[38.529871, -90.569186],[31.857694, -91.316257]], {opacity: 0.8}).addTo(mymap);
+mysecondpolyline.bindPopup("This is Colarado River").openPopup();;
+mythirdpolyline.bindPopup("This is my Mississippi River").openPopup();;
+
+
+var colaradoPolygon = L.polygon([[[41.003444, -109.045183],[41.003444, -102.041524],[36.993076, -102.041524],[36.993076, -109.045183]]],{color:'purple', weight:8, dashArray:' 5, 5', fillColor:'pink', fillOpacity:1}).addTo(mymap);
+var wyomingPolygon = L.polygon([[[45.003444, -111.056888],[45.003444,-104.053229],[41.003444, -104.053229],[41.003444, -111.056888]]],{color:'green', weight:8, lineCap: 'round', lineJoin: 'bevel', fillColor:'pink', fillOpacity:1}).addTo(mymap);
+colaradoPolygon.bindPopup("Colarado")
+wyomingPolygon.bindPopup("Wyoming")
+
+</script>
+
+</body>
+</html>
+
+<p>Options </p>
+    <p>For Additional Points I added in a title, keyboard and did a riseOnHover</p>
+    <p> For Polylines I added a Opacity, smoothFactor of 0.5 and openPopup()</p>
+    <p> For Polygons I changed dashArray, lineJoin, and lineCap</p>
